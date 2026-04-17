@@ -1,0 +1,20 @@
+name: Payment CI
+
+on: [push] # The pipeline starts every time you push code
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Runs on GitHub's cloud servers
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4 # Downloads your code to the server
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build and Test
+        run: mvn clean package # Task 3: Runs Maven build and JUnit tests
